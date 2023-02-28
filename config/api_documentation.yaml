@@ -1,0 +1,523 @@
+---
+swagger: '2.0'
+info:
+  title: Doculock API
+  version: '2.0'
+paths:
+  "/register":
+    post:
+      description: Create a user account
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/login":
+    post:
+      description: Login to an account
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/profile":
+    get:
+      description: Get user informations
+      parameters: []
+      responses:
+        '200':
+          description: OK
+    put:
+      description: Update user informations
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/users":
+    get:
+      description: get users informations
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/changepassword":
+    put:
+      description: Change an account password
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/user/friends":
+    get:
+      description: Get user friends
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/user/search":
+    get:
+      description: search for user friends
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/user/storage":
+    get:
+      description: get user storage
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/user/usedstorage":
+    get:
+      description: get user used storage
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/user/deactivate":
+    put:
+      description: deactivate a user account
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/user/reactivate/:id":
+    put:
+      description: Reactivate a user account
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/user/delete":
+    delete:
+      description: Delete a user account
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/user/confirm":
+    get:
+      description: Confirm a user account
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/group/create":
+    post:
+      description: Create a group of users
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/group":
+    get:
+      description: get a group informations
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/group/:id":
+    put:
+      description: Update group name or members
+      parameters: []
+      responses:
+        '200':
+          description: OK
+    delete:
+      description: Delete a group
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/folder/create":
+    post:
+      description: create a new folder
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/folder/:id/activity":
+    get:
+      description: get folder activities with ID
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/folder/:id":
+    get:
+      description: Get a chosen folder with ID
+      parameters: []
+      responses:
+        '200':
+          description: OK
+    put:
+      description: Update a chosen folder with ID
+      parameters: []
+      responses:
+        '200':
+          description: OK
+    delete:
+      description: delete a chosen folder with ID
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/folder/:id/search":
+    get:
+      description: Search a folder with ID
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/folder/:id/move/:destination":
+    put:
+      description: Move a folder from an element to another
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/folder/softdelete/:id":
+    delete:
+      description: Soft delete a chosen folder with ID
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/folder/restore/:id":
+    put:
+      description: Restore a soft deleted folder with ID
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/box/create":
+    post:
+      description: create a new box
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/box/:id/share":
+    post:
+      description: Share a box to another user with ID
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/box/:id/create":
+    post:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/box/:id":
+    get:
+      description: Get a chosen box with ID
+      parameters: []
+      responses:
+        '200':
+          description: OK
+    put:
+      description: Update a chosen box with ID
+      parameters: []
+      responses:
+        '200':
+          description: OK
+    delete:
+      description: Delete a chosen box with ID
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/box/:id/access":
+    get:
+      description: Get a box access with ID
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/access/box/:id":
+    get:
+      description: Get an access box with ID
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/box/:id/activity":
+    get:
+      description: Get a box activities
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/box/:id/move/:destination":
+    put:
+      description: Move a box from an element to another
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/box/softdelete/:id":
+    delete:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/box/restore/:id":
+    put:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/access/:id":
+    get:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+    put:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+    delete:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/access/:id/duplicate/:destination":
+    put:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/box/:id/comment":
+    post:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/box/comment/:comment_id":
+    put:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+    delete:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/document/create":
+    post:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/document/:id":
+    get:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+    put:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+    delete:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/document/:id/activity":
+    get:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/document/softdelete/:id":
+    delete:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/document/restore/:id":
+    put:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/document/:id/comment":
+    post:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/document/comment/:comment_id":
+    put:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+    delete:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/attachment/:id/download":
+    get:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/docrequest/create":
+    post:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/docrequest/upload":
+    post:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/docrequest/:id":
+    get:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+    put:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+    delete:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/docrequest/:id/activity":
+    get:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/docrequest/:id/move/:destination":
+    put:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/docrequest/:id/activation":
+    put:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/docrequest/softdelete/:id":
+    delete:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/docrequest/restore/:id":
+    put:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/anonymous":
+    get:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/storage/create":
+    post:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/storage/:id":
+    get:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+    put:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/storage/:id/activate":
+    put:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/storage/:id/deactivate":
+    put:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/starContent":
+    put:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/preferences/:id":
+    put:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  "/notification/config":
+    get:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK

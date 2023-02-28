@@ -1,0 +1,2381 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Doculock API",
+    "version": "2.0"
+  },
+  "paths": {
+    "/register": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Create a user account",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Name of the user to create"
+          },
+          {
+            "in": "body",
+            "name": "login",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Login of the user to create"
+          },
+          {
+            "in": "body",
+            "name": "type",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Type of the register(email or phone number)"
+          },
+          {
+            "in": "body",
+            "name": "password",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Password of the user to create"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Undefined cac or Incorrect argument root folder or login already exists"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Login to an account",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "login",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Login of the user to get"
+          },
+          {
+            "in": "body",
+            "name": "password",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Password of the user to get"
+          },
+          {
+            "in": "body",
+            "name": "fcm_token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Notification token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "incorrect password"
+          },
+          "400": {
+            "description": "inexistant login"
+          }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Get user informations",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Undefined argument"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "description": "Update user informations",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "User Not found or Incorrect argument"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Get users informations",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Undefined argument"
+          }
+        }
+      }
+    },
+    "/changepassword": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "description": "Change an account password",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "oldpassword",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Current password to change"
+          },
+          {
+            "in": "body",
+            "name": "password",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "New password"
+          },
+          {
+            "in": "body",
+            "name": "key",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Encryption key"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Already used password or Invalid password or Error when updating password"
+          }
+        }
+      }
+    },
+    "/user/friends": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Get user friends",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "No Friends found"
+          }
+        }
+      }
+    },
+    "/user/search": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Search for user friends",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "login",
+            "type": "string",
+            "description": "Login of the user to search"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Nothing to search"
+          }
+        }
+      }
+    },
+    "/user/storage": {
+      "get": {
+        "tags": [
+          "Storage"
+        ],
+        "description": "Get user storage",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Undefined argument"
+          }
+        }
+      }
+    },
+    "/user/usedstorage": {
+      "get": {
+        "tags": [
+          "Storage"
+        ],
+        "description": "Get user used storage",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/user/deactivate": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "description": "Deactivate a user account",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "password",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Current password to verify user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "incorrect password"
+          },
+          "400": {
+            "description": "User already deactivated or User not found"
+          }
+        }
+      }
+    },
+    "/user/reactivate/:id": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "description": "Reactivate a user account",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the user to get"
+          },
+          {
+            "in": "body",
+            "name": "fcm_token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Notification token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "User already activated or User not found"
+          }
+        }
+      }
+    },
+    "/user/delete": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "description": "Delete a user account",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "password",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Current password for confirmation"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "incorrect password"
+          },
+          "400": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/user/confirm": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Confirm a user account",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "token",
+            "type": "string",
+            "description": "Validation token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "User Already Active  or Validation Token Expired or Can not Confirm User"
+          }
+        }
+      }
+    },
+    "/group/create": {
+      "post": {
+        "tags": [
+          "Groups"
+        ],
+        "description": "Create a group of users",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Name of the group to create"
+          },
+          {
+            "in": "body",
+            "name": "users",
+            "schema": {
+              "type": "array"
+            },
+            "required": true,
+            "description": "Users IDs in the group to create"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Nothing to add or Undefined argument"
+          }
+        }
+      }
+    },
+    "/group": {
+      "get": {
+        "tags": [
+          "Groups"
+        ],
+        "description": "Get all groups informations",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Invalid argument"
+          }
+        }
+      }
+    },
+    "/group/:id": {
+      "put": {
+        "tags": [
+          "Groups"
+        ],
+        "description": "Update group name or members",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the group to update"
+          },
+          {
+            "in": "body",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Name of the group to update"
+          },
+          {
+            "in": "body",
+            "name": "users",
+            "schema": {
+              "type": "array"
+            },
+            "required": true,
+            "description": "Users IDs in the group to update"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Invalid argument"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Groups"
+        ],
+        "description": "Delete a group",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the user to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Invalid argument"
+          }
+        }
+      }
+    },
+    "/folder/create": {
+      "post": {
+        "tags": [
+          "Folder"
+        ],
+        "description": "Create a new folder",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Name of the folder to create"
+          },
+          {
+            "in": "body",
+            "name": "parent_folder/parent_box",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Parent folder or Parent box of the folder to create"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Parent container not found or parent container undefined "
+          }
+        }
+      }
+    },
+    "/folder/:id/activity": {
+      "get": {
+        "tags": [
+          "Folder"
+        ],
+        "description": "Get folder activities with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the user to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/folder/:id": {
+      "get": {
+        "tags": [
+          "Folder"
+        ],
+        "description": "Get a chosen folder with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the folder to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Folder"
+        ],
+        "description": "Update a chosen folder with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the folder to update"
+          },
+          {
+            "in": "body",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "New name of the folder to update"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Folder"
+        ],
+        "description": "Delete a chosen folder with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the user to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          },
+          "404": {
+            "description": "Folder not found"
+          },
+          "401": {
+            "description": "root Folder can't be deleted"
+          }
+        }
+      }
+    },
+    "/folder/:id/search": {
+      "get": {
+        "tags": [
+          "Folder"
+        ],
+        "description": "Search a folder with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the parent folder"
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "type": "string",
+            "description": "Name of the searched element"
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "type": "string",
+            "description": "Type of the searched element"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "420": {
+            "description": "Invalid ID supplied"
+          }
+        }
+      }
+    },
+    "/folder/:id/move/:destination": {
+      "put": {
+        "tags": [
+          "Folder"
+        ],
+        "description": "Move a folder from an element to another",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the folder to move"
+          },
+          {
+            "in": "path",
+            "name": "destination",
+            "type": "string",
+            "required": true,
+            "description": "ID of the destination"
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "type": "string",
+            "description": "Type of the destination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/folder/softdelete/:id": {
+      "delete": {
+        "tags": [
+          "Folder"
+        ],
+        "description": "Soft delete a chosen folder with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the folder to soft delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/folder/restore/:id": {
+      "put": {
+        "tags": [
+          "Folder"
+        ],
+        "description": "Restore a soft deleted folder with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the folder to restore"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "420": {
+            "description": "Missing arguments"
+          }
+        }
+      }
+    },
+    "/box/create": {
+      "post": {
+        "tags": [
+          "Box"
+        ],
+        "description": "Create a new box",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Name of the box to create"
+          },
+          {
+            "in": "body",
+            "name": "parent_folder",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Parent folder of the box to create"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Error when creating the csd or Error during creation or parent_folder not found or missing argument"
+          }
+        }
+      }
+    },
+    "/box/:id/share": {
+      "post": {
+        "tags": [
+          "Box"
+        ],
+        "description": "Share a box to another user with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the box to share"
+          },
+          {
+            "in": "body",
+            "name": "users",
+            "schema": {
+              "type": "array"
+            },
+            "required": true,
+            "description": "ID of the users to share to"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Undefined Box or Incorrect argument"
+          }
+        }
+      }
+    },
+    "/box/:id": {
+      "get": {
+        "tags": [
+          "Box"
+        ],
+        "description": "Get a chosen box with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the box to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+           "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Box"
+        ],
+        "description": "Update a chosen box with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the box to update"
+          },
+          {
+            "in": "body",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "New name of the box to update"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Box"
+        ],
+        "description": "Delete a chosen box with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the box to delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/box/:id/access": {
+      "get": {
+        "tags": [
+          "Box"
+        ],
+        "description": "Get a box accesses with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the box to get the accesses of"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "420": {
+            "description": "Invalid ID supplied"
+          }
+        }
+      }
+    },
+    "/access/box/:id": {
+      "get": {
+        "tags": [
+          "Box"
+        ],
+        "description": "Get an access box with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the box of the access"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/box/:id/activity": {
+      "get": {
+        "tags": [
+          "Box"
+        ],
+        "description": "Get a box activities",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the box to get activities of"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/box/:id/move/:destination": {
+      "put": {
+        "tags": [
+          "Box"
+        ],
+        "description": "Move a box from an element to another",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the box to move"
+          },
+          {
+            "in": "path",
+            "name": "destination",
+            "type": "string",
+            "required": true,
+            "description": "ID of the destination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          },
+          "404": {
+            "description": "Access not found"
+          }
+        }
+      }
+    },
+    "/box/softdelete/:id": {
+      "delete": {
+        "tags": [
+          "Box"
+        ],
+        "description": "Soft delete a box with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the box to soft delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/box/restore/:id": {
+      "put": {
+        "tags": [
+          "Box"
+        ],
+        "description": "Restore a soft deleted box with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the box to restore"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "420": {
+            "description": "Missing arguments"
+          }
+        }
+      }
+    },
+    "/access/:id": {
+      "get": {
+        "tags": [
+          "Box"
+        ],
+        "description": "Get an access with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the access to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Box"
+        ],
+        "description": "Update an access with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the access to update"
+          },
+          {
+            "in": "body",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Status of the access"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Box"
+        ],
+        "description": "Delete an access with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the access to delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          },
+          "401": {
+            "description": "Unauthorized action"
+          },
+          "404": {
+            "description": "Share not found"
+          }
+        }
+      }
+    },
+    "/access/:id/duplicate/:destination": {
+      "put": {
+        "tags": [
+          "Box"
+        ],
+        "description": "Duplicate an access in another element",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the access to duplicate"
+          },
+          {
+            "in": "path",
+            "name": "destination",
+            "type": "string",
+            "required": true,
+            "description": "ID of the destination of the duplicat"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Access not found"
+          }
+        }
+      }
+    },
+    "/box/:id/comment": {
+      "post": {
+        "tags": [
+          "Box"
+        ],
+        "description": "Add a box comment",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the box to comment"
+          },
+          {
+            "in": "body",
+            "name": "comment",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Comment to add"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/box/comment/:comment_id": {
+      "put": {
+        "tags": [
+          "Box"
+        ],
+        "description": "Update a box comment",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "comment_id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the comment to update"
+          },
+          {
+            "in": "body",
+            "name": "comment",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "New comment to add"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Box"
+        ],
+        "description": "Delete a box comment",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "comment_id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the comment to delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/document/create": {
+      "post": {
+        "tags": [
+          "Document"
+        ],
+        "description": "Create a new document",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "filename",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Filename of the document to create"
+          },
+          {
+            "in": "body",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Size of the document to create"
+          },
+          {
+            "in": "body",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Name of the document to create"
+          },
+          {
+            "in": "body",
+            "name": "parent_box",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Parent box of the document to create"
+          },
+          {
+            "in": "body",
+            "name": "root_box",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Root box of the parent folder of the document to create"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Neither parent folder nor box provided"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/document/:id": {
+      "get": {
+        "tags": [
+          "Document"
+        ],
+        "description": "Get a chosen document with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the document to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "document not found"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Document"
+        ],
+        "description": "Update a chosen document with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the document to update"
+          },
+          {
+            "in": "body",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "New Name of the document"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Document"
+        ],
+        "description": "Delete a chosen document with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the document to delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/document/:id/activity": {
+      "get": {
+        "tags": [
+          "Document"
+        ],
+        "description": "Get document activities",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the document to get the activities of"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/document/softdelete/:id": {
+      "delete": {
+        "tags": [
+          "Document"
+        ],
+        "description": "Soft delete a document with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the document to soft delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/document/restore/:id": {
+      "put": {
+        "tags": [
+          "Document"
+        ],
+        "description": "Restore a soft deleted document with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the document to restore"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "420": {
+            "description": "Missing argument"
+          }
+        }
+      }
+    },
+    "/document/:id/comment": {
+      "post": {
+        "tags": [
+          "Document"
+        ],
+        "description": "Add a document comment",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the document to comment"
+          },
+          {
+            "in": "body",
+            "name": "comment",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Comment to add"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/document/comment/:comment_id": {
+      "put": {
+        "tags": [
+          "Document"
+        ],
+        "description": "Update a document comment",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "comment_id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the comment to update"
+          },
+          {
+            "in": "body",
+            "name": "comment",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "New comment to add"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Document"
+        ],
+        "description": "Delete a document comment",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "comment_id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the comment to delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/attachment/:id/download": {
+      "get": {
+        "tags": [
+          "Document"
+        ],
+        "description": "Download a chosen attachment with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the attachment to download"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          },
+          "404": {
+            "description": "Attachment not found"
+          }
+        }
+      }
+    },
+    "/docrequest/create": {
+      "post": {
+        "tags": [
+          "Docrequest"
+        ],
+        "description": "Create a docrequest",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "title",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "title of the docrequest to create"
+          },
+          {
+            "in": "body",
+            "name": "link",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Link of the docrequest to create"
+          },
+          {
+            "in": "body",
+            "name": "parent_folder",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Parent folder of the docrequest to create"
+          },
+          {
+            "in": "body",
+            "name": "expires_at",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "New expiration time of the docrequest"
+          },
+          {
+            "in": "body",
+            "name": "allow_anonymous",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": true,
+            "description": "Allow anonymous upload"
+          },
+          {
+            "in": "body",
+            "name": "max_sending",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Number of max sendings of the docrequest"
+          },
+          {
+            "in": "body",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Status of the docrequest"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Parent folder not found or Parent folder undefined"
+          }
+        }
+      }
+    },
+    "/docrequest/upload": {
+      "post": {
+        "tags": [
+          "Docrequest"
+        ],
+        "description": "Upload elements into a docrequest",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "key",
+            "schema": {
+              "type": "object"
+            },
+            "required": true,
+            "description": "Encryption key"
+          },
+          {
+            "in": "body",
+            "name": "files",
+            "schema": {
+              "type": "array"
+            },
+            "required": true,
+            "description": "Files sent through the docrequest"
+          },
+          {
+            "in": "body",
+            "name": "content_type",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Content type of the docrequest"
+          },
+          {
+            "in": "body",
+            "name": "parent_folder",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Parent folder of the docrequest"
+          },
+          {
+            "in": "body",
+            "name": "comment",
+            "schema": {
+              "type": "object"
+            },
+            "required": true,
+            "description": "Numeric ID of the user to get"
+          },
+          {
+            "in": "body",
+            "name": "sender",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Login of the sender"
+          },
+          {
+            "in": "query",
+            "name": "link",
+            "type": "string",
+            "description": "Link of the docrequest"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Doc request expired"
+          }
+        }
+      }
+    },
+    "/docrequest/:id": {
+      "get": {
+        "tags": [
+          "Docrequest"
+        ],
+        "description": "Get a docrequest with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the docrequest to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Docrequest"
+        ],
+        "description": "Update a docrequest with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the docrequest to update"
+          },
+          {
+            "in": "body",
+            "name": "title",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "New title of the docrequest"
+          },
+          {
+            "in": "body",
+            "name": "expires_at",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "New expiration time of the docrequest"
+          },
+          {
+            "in": "body",
+            "name": "allow_anonymous",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": true,
+            "description": "Allow anonymous upload"
+          },
+          {
+            "in": "body",
+            "name": "max_sending",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Number of max sendings of the docrequest"
+          },
+          {
+            "in": "body",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Status of the docrequest"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Docrequest"
+        ],
+        "description": "Delete a docrequest with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the docrequest to delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          },
+          "404": {
+            "description": "Document not found"
+          }
+        }
+      }
+    },
+    "/docrequest/:id/activity": {
+      "get": {
+        "tags": [
+          "Docrequest"
+        ],
+        "description": "Get a docrequest activities",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the docrequest to get activities of"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/docrequest/:id/move/:destination": {
+      "put": {
+        "tags": [
+          "Docrequest"
+        ],
+        "description": "Move a docrequest from an element to another",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the docrequest to move"
+          },
+          {
+            "in": "path",
+            "name": "destination",
+            "type": "string",
+            "required": true,
+            "description": "ID of the destination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/docrequest/:id/activation": {
+      "put": {
+        "tags": [
+          "Docrequest"
+        ],
+        "description": "Activate a chosen docrequest",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the docrequest to activate"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/docrequest/softdelete/:id": {
+      "delete": {
+        "tags": [
+          "Docrequest"
+        ],
+        "description": "Soft delete a docrequest with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the docrequest to soft delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/docrequest/restore/:id": {
+      "put": {
+        "tags": [
+          "Docrequest"
+        ],
+        "description": "Restore a soft deleted docrequest with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the docrequest to restore"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/anonymous": {
+      "get": {
+        "tags": [
+          "Docrequest"
+        ],
+        "description": "Get docrequest elements from an anonymous user",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "link",
+            "type": "string",
+            "description": "Link of the docrequest to an anonymous sender"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument or parent folder not found"
+          }
+        }
+      }
+    },
+    "/storage/create": {
+      "post": {
+        "tags": [
+          "Storage"
+        ],
+        "description": "Create a new storage",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "storage",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The chosen storage"
+          },
+          {
+            "in": "body",
+            "name": "type",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Type of the storage"
+          },
+          {
+            "in": "body",
+            "name": "params",
+            "schema": {
+              "type": "object"
+            },
+            "required": true,
+            "description": "Params of the storage"
+          },
+          {
+            "in": "body",
+            "name": "default_storage",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": true,
+            "description": "Default storage"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/storage/:id": {
+      "get": {
+        "tags": [
+          "Storage"
+        ],
+        "description": "Get a storage with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the storage to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Storage"
+        ],
+        "description": "Update a storage with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the storage to update"
+          },
+          {
+            "in": "body",
+            "name": "storage",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "New chosen storage"
+          },
+          {
+            "in": "body",
+            "name": "type",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "New storage type"
+          },
+          {
+            "in": "body",
+            "name": "params",
+            "schema": {
+              "type": "object"
+            },
+            "required": true,
+            "description": "New storage params"
+          },
+          {
+            "in": "body",
+            "name": "default_storage",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": true,
+            "description": "Default storage"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/storage/:id/activate": {
+      "put": {
+        "tags": [
+          "Storage"
+        ],
+        "description": "Activate a storage with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the storage to activate"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument or Already Active"
+          }
+        }
+      }
+    },
+    "/storage/:id/deactivate": {
+      "put": {
+        "tags": [
+          "Storage"
+        ],
+        "description": "Deactivate a storage with ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the storage to deactivate"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument or Already deactivated"
+          }
+        }
+      }
+    },
+    "/starContent": {
+      "put": {
+        "tags": [
+          "Storage"
+        ],
+        "description": "Add elements to favorite",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "folders",
+            "schema": {
+              "type": "array"
+            },
+            "required": true,
+            "description": "Folders to include in star content"
+          },
+          {
+            "in": "body",
+            "name": "boxes",
+            "schema": {
+              "type": "array"
+            },
+            "required": true,
+            "description": "Boxes to include in star content"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Starred not found"
+          }
+        }
+      }
+    },
+    "/preferences/:id": {
+      "put": {
+        "tags": [
+          "Configuration"
+        ],
+        "description": "Update configuration preferences",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of the user to configure"
+          },
+          {
+            "in": "body",
+            "name": "notif_preferences",
+            "schema": {
+              "type": "array"
+            },
+            "required": true,
+            "description": "Notification preferences configuration"
+          },
+          {
+            "in": "body",
+            "name": "theme",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Application Theme configuration"
+          },
+          {
+            "in": "body",
+            "name": "Language",
+            "schema": {
+              "type": "array"
+            },
+            "required": true,
+            "description": "Application Language configuration"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect argument"
+          }
+        }
+      }
+    },
+    "/notification/config": {
+      "get": {
+        "tags": [
+          "Configuration"
+        ],
+        "description": "Get configuration preferences",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Preferences not found"
+          }
+        }
+      }
+    }
+  }
+}
